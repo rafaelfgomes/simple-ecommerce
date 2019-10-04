@@ -13,7 +13,9 @@ class Core {
 
   public function getUrl()
   {
-    echo $_GET['url'];
+    if (isset($_GET['url'])) {
+      # code...
+    }
   }
 
 }
