@@ -2,6 +2,7 @@
 
   $domain = 'http://localhost:8080';
   
-  define('APP_PATH', dirname(dirname(__FILE__)));
-  define('URL_PATH', $domain . '/simple-ecommerce');
-  define('SITE_NAME', 'Simple E-Commerce');
+  define('APPROOT', dirname(dirname(__FILE__)));
+  define('URLROOT', $domain . '/simple-ecommerce');
+  define('PUBLICPATH', URLROOT . '/public');
+  define('SITENAME', 'Simple E-Commerce');

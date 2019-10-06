@@ -2,16 +2,22 @@
 
 class Pages extends Controller {
 
-  public function __construct()
-  {
-    
+  public function __construct() {
+
+    $this->category = $this->model('Category');
+    $this->cart = $this->model('CartModel');
+    $this->products = $this->model('ProductModel');
+  
   }
 
-  public function index()
-  {
+  public function index() {
+
+    allCategories($this->category->getCategories());
+    allProducts($this->products->all());
+    cartSession($this->cart->getProducts(), $this->cart->count());
 
     $data = [
-      'message' => 'MVC PHP Template'
+      'attr' => ' '
     ];
 
     $this->view('pages/index', $data);
