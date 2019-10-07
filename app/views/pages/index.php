@@ -18,7 +18,7 @@
 
               <div class="col-md-6 col-12 pb-2">
                 
-                <button type="button" class="btn btn-info w-75">Detalhes</button>
+                <button type="button" class="btn btn-info w-75" data-toggle="modal" data-target="#product-detail-modal" data-id="<?php echo $product->id; ?>" data-name="<?php echo $product->name; ?>" data-description="<?php echo $product->description ?>" data-price="<?php echo 'R$ ' . number_format($product->price, 2, ',', '.'); ?>">Detalhes</button>
               
               </div>
               
@@ -33,9 +33,7 @@
 
               </div>
             
-            </div>
-
-            
+            </div>            
 
           </p>
           
@@ -44,5 +42,7 @@
       </div>
 
     <?php endforeach; ?>
+
+    <?php require APPROOT . '/views/components/details.php'; ?>    
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>
