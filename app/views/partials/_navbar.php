@@ -20,15 +20,15 @@
 
     </ul>
     
-    <form class="form-inline my-2 my-lg-0">
+    <form method="POST" action="<?php echo URLROOT; ?>/products/search" class="form-inline my-2 my-lg-0">
 
       <div class="input-group">
         
-        <input type="text" class="form-control" placeholder="Pesquisar no site" aria-label="Pesquisar no site" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" required placeholder="Pesquisar no site" aria-label="Pesquisar no site" name="value" aria-describedby="basic-addon2">
         
         <div class="input-group-append">
           
-          <button class="btn btn-outline-success" type="button">
+          <button class="btn btn-outline-success" type="submit">
             <i class="fas fa-search"></i>
           </button>
         

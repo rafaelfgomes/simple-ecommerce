@@ -13,7 +13,7 @@
     public function getProducts()
     {
 
-      $cartProducts = $this->db->query("SELECT p.name, p.description, p.image, c.quantity, p.price, (p.price * c. quantity) AS 'total_price' FROM cart c INNER JOIN products p on p.id = c.product_id");
+      $cartProducts = $this->db->query("SELECT c.id, p.name, p.description, p.image, c.quantity, p.price, (p.price * c. quantity) AS 'total_price' FROM cart c INNER JOIN products p on p.id = c.product_id");
       
       $cartProducts = $this->db->all();
 
@@ -40,6 +40,19 @@
 
       return $count;
 
+    }
+
+    public function removeItem($id)
+    {
+
+      $this->db->query("DELETE FROM cart WHERE id = $id");
+
+      if ($this->db->execute()) {
+        return true;
+      }
+      
+      return false;
+      
     }
 
   }

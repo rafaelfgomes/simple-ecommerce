@@ -66,7 +66,7 @@ VALUES
 ('TV LED 43" LG', 'Smart TV LED 43" Full HD LG 43LM6300PSB ThinQ AI Inteligência Artificial com IoT, Virtual Surround Sound, WebOS 4.5, HDR, Quad Core, Bluetooth e HDMI', 'images/electronics/tvlg43.jpg', 1379),
 ('TV LED 65" Sony', 'Smart TV LED 65" UHD 4K Sony BRAVIA KD-65X755F com Android, HDR, X-Reality Pro, Motionflow XR 240, X-Protection PRO, Wi-Fi, HDMI e USB', 'images/electronics/tvsony65.jpg', 4659.90),
 ('Guarda-Roupa Fama', 'Guarda-Roupa Fama Flórida Plus com 3 Portas de Correr, 4 Gavetas e Espelho', 'images/furnitures/guardaroupafama.jpg', 629.90),
-('Guarda-Roupa Bartira', 'Guarda-Roupa Fama Flórida Plus com 3 Portas de Correr, 4 Gavetas e Espelho', 'images/furnitures/guardaroupabartira.jpg', 799),
+('Guarda-Roupa Bartira', 'Guarda-Roupa Bartira Curitiba II com 8 Portas e 4 Gavetas', 'images/furnitures/guardaroupabartira.jpg', 799),
 ('Cama de Casal Monalisa', 'Cama de Casal Flex Collor Monalisa Móveis Europa - Nogueira/Branco', 'images/furnitures/camacasalmonalisa.jpg', 299),
 ('Cama Bartira ', 'Cama de Solteiro Bartira Alegra', 'images/furnitures/camasolteirobartira.jpg', 279),
 ('Sofá Linoforte', 'Sofá 3 e 2 Lugares Linoforte Stillus em Korino', 'images/furnitures/sofalinoforte.jpg', 1299),

@@ -37,7 +37,7 @@
 
               <?php foreach($_SESSION['categories'] as $key => $category) : ?>
 
-                <a class="btn btn-link text-decoration-none <?php echo $data['attr']; ?>" href="<?php echo URLROOT; ?>/products/list">
+                <a class="btn btn-link text-decoration-none <?php echo $data['attr']; ?>" href="<?php echo URLROOT; ?>/products/list/<?php echo $category->id;?>">
                   <li class="list-group-item" ><?php echo $category->name; ?></li>
                 </a>
 

@@ -17,7 +17,7 @@ class Pages extends Controller {
     cartSession($this->cart->getProducts(), $this->cart->count());
 
     $data = [
-      'attr' => ' '
+      'attr' => ''
     ];
 
     $this->view('pages/index', $data);

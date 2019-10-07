@@ -2,35 +2,45 @@
 
   class Products extends Controller {
 
-    public function all()
+    public function __construct() {
+
+      $this->products = $this->model('ProductModel');
+    
+    }
+
+    public function list($id)
     {
 
-      $categories = [ 'Eletrônicos', 'Telefonia' ];
-
-      $products[] = [
-        'name' => 'Produto 1',
-        'description' => 'Descrição 1'
-      ];
-      
-      $products[] = [
-        'name' => 'Produto 2',
-        'description' => 'Descrição 2'
-      ];
-
-      $products[] = [
-        'name' => 'Produto 3',
-        'description' => 'Descrição 3'
-      ];
+      $products = $this->products->listByCategory($id);
 
       $data = [
-        'message' => 'MVC PHP Template',
-        'categories' => $categories,
+        'attr' => '',
         'products' => $products
       ];
-
-      $data['attr'] = '';
       
       $this->view('pages/products/category', $data);
+
+    }
+
+    public function search()
+    {
+      
+      $products = $this->products->search($_POST['value']);
+
+      $data = [
+        'attr' => '',
+        'resultSearch' => $products
+      ];
+      
+      $this->view('pages/products/search', $data);
+
+    }
+
+    public function show($id) {
+      
+      $product = $this->products->getDetails($id);
+      
+      return $product;
 
     }
 

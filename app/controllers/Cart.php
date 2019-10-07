@@ -10,6 +10,7 @@
 
     public function index()
     {
+
       $totalAmountValue = $this->cart->totalAmountValue();
 
       $data = [
@@ -27,6 +28,23 @@
 
       
 
+
+    }
+
+    public function remove($id)
+    {
+      
+      $removed = $this->cart->removeItem($id);
+
+      if ($removed) {
+        
+        redirect('pages/index');
+
+      } else {
+
+        flash('error', 'Houve um problema ao excluir o item', 'alert alert-danger');
+
+      }
 
     }
 
