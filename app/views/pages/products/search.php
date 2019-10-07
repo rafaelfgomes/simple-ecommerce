@@ -14,23 +14,21 @@
 
           <div class="media-body">
 
-            <h5 class="mt-0"><?php echo $product->name; ?></h5>
-            
-            <p><?php echo $product->description; ?></p>
+            <h5 class="mt-0 pb-4"><?php echo $product->name; ?></h5>
 
             <p class="mb-0">
 
               <div class="row text-center">
 
-                <div class="col">
+                <div class="col-md-6 col-12 pb-2">
                   
                   <button type="button" class="btn btn-info w-75">Detalhes</button>
                 
                 </div>
                 
-                <div class="col">
+                <div class="col-md-6 col-12">
 
-                  <button type="button" class="btn btn-success w-75">Adicionar ao carrinho</button>
+                  <button type="button" class="btn btn-success w-75">Add ao carrinho</button>
 
                 </div>
               

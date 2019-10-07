@@ -45,14 +45,45 @@
     public function removeItem($id)
     {
 
-      $this->db->query("DELETE FROM cart WHERE id = $id");
+      $this->db->query("DELETE FROM cart WHERE id = :id");
+      $this->db->bind(':id', $id, PDO::PARAM_INT);
 
       if ($this->db->execute()) {
+
         return true;
+      
       }
       
       return false;
       
+    }
+
+    public function storeProduct($params)
+    {
+
+      $id = $params['product-id'];
+
+      $this->db->query("SELECT id, quantity FROM cart WHERE product_id = $id");
+
+      $data = $this->db->get();
+
+      if (isset($data)) {
+
+        $qtd = $data->quantity + 1;
+        
+        $this->db->query("UPDATE cart SET quantity = :quantity WHERE id = :id");
+        $this->db->bind(':quantity', $qtd, PDO::PARAM_INT);
+        $this->db->bind(':id', $data->id, PDO::PARAM_INT);
+
+      } else {
+
+        $this->db->query('INSERT INTO cart (quantity, product_id) VALUES (1, :product_id)');
+        $this->db->bind(':product_id', $params['product-id'], PDO::PARAM_INT);
+
+      }
+
+      return ($this->db->execute()) ? true : false;
+
     }
 
   }

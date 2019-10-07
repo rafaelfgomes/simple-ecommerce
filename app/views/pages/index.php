@@ -6,27 +6,30 @@
 
       <div class="media mb-2" style="border: 1px solid blue;">
 
-        <img src="<?php echo PUBLICPATH . '/' . $product->image; ?>" class="align-self-start mr-3 img-thumbnail" alt="<?php echo $product->name; ?>" style="width: 180px; height: 180px">
+        <img src="<?php echo PUBLICPATH . '/' . $product->image; ?>" class="align-self-start mr-3 img-thumbnail img-responsive" alt="<?php echo $product->name; ?>" style="width: 140px; height: 140px">
 
         <div class="media-body">
 
-          <h5 class="mt-0"><?php echo $product->name; ?></h5>
+          <h5 class="mt-0 pb-4"><?php echo $product->name; ?></h5>
           
-          <p><?php echo $product->description; ?></p>
-
           <p class="mb-0">
 
             <div class="row text-center">
 
-              <div class="col">
+              <div class="col-md-6 col-12 pb-2">
                 
                 <button type="button" class="btn btn-info w-75">Detalhes</button>
               
               </div>
               
-              <div class="col">
+              <div class="col-md-6 col-12">
 
-                <button type="button" class="btn btn-success w-75">Adicionar ao carrinho</button>
+                <form action="<?php echo URLROOT ?>/cart/store" method="POST">
+
+                  <input type="hidden" name="product-id" value="<?php echo $product->id; ?>">
+                  <button type="submit" class="btn btn-success w-75">Add ao carrinho</button>
+
+                </form>
 
               </div>
             

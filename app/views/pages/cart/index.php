@@ -50,9 +50,12 @@
                             <td class="text-center align-middle">R$&nbsp;<?php echo number_format($product->price, 2, ',', '.'); ?></td>
                             <td class="text-center align-middle">R$&nbsp;<?php echo number_format($product->total_price, 2, ',', '.'); ?></td>
                             <td class="text-center align-middle">
-                                <button type="button" class="btn btn-danger" data-id="<?php echo $product->id; ?>" >
-                                    <i class="fas fa-times"></i>
-                                </button>
+                                <form action="<?php echo URLROOT ?>/cart/remove" method="POST">
+                                    <input type="hidden" name="cart-id" value="<?php echo $product->id; ?>">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
 

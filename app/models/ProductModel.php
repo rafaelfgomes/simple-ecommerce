@@ -15,8 +15,6 @@
       $this->db->query("SELECT * FROM products");
       $products = $this->db->all();
 
-      print_r($products);
-
       return $products;
 
     }

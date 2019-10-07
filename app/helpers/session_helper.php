@@ -2,6 +2,25 @@
 
   session_start();
 
+  function allCategories($categories) {
+
+    $_SESSION['categories'] = $categories;
+
+  }
+
+  function cartSession($products, $count) {
+
+    $_SESSION['cart'] = $products;
+    $_SESSION['productsCount'] = $count;
+
+  }
+
+  function allProducts($products) {
+
+    $_SESSION['products'] = $products;
+
+  }
+
   function flash($name = '', $message = '', $class = 'alert alert-success') {
 
     if (!empty($name)) {
