@@ -29,21 +29,29 @@
 
             <p class="h4 text-center pt-2 pb-2">Categorias</p>
 
-            <ul class="list-group">
+            <?php if(count($_SESSION['categories'])) : ?>
 
-              <a class="btn btn-link text-decoration-none <?php echo $data['attr']; ?>" href="<?php echo URLROOT; ?>">
-                <li class="list-group-item">Todos os produtos</li>
-              </a>
+              <ul class="list-group">
 
-              <?php foreach($_SESSION['categories'] as $key => $category) : ?>
-
-                <a class="btn btn-link text-decoration-none <?php echo $data['attr']; ?>" href="<?php echo URLROOT; ?>/products/list/<?php echo $category->id;?>">
-                  <li class="list-group-item" ><?php echo $category->name; ?></li>
+                <a class="btn btn-link text-decoration-none <?php echo $data['attr']; ?>" href="<?php echo URLROOT; ?>">
+                  <li class="list-group-item">Todos os produtos</li>
                 </a>
 
-              <?php endforeach; ?>
+                <?php foreach($_SESSION['categories'] as $key => $category) : ?>
 
-            </ul>
+                  <a class="btn btn-link text-decoration-none <?php echo $data['attr']; ?>" href="<?php echo URLROOT; ?>/products/list/<?php echo $category->id;?>">
+                    <li class="list-group-item" ><?php echo $category->name; ?></li>
+                  </a>
+
+                <?php endforeach; ?>
+
+              </ul>
+
+            <?php else : ?>
+
+              <p>Não há categorias cadastradas</p>
+            
+            <?php endif; ?>
           
           </aside>
 

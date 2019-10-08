@@ -15,12 +15,12 @@
 
     public function __construct() {
       
-      $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname . ';port=' . $this->port;
+      $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname . ';port=' . $this->port . ';charset=' . $this->charset;
       $options = [ 
         PDO::ATTR_PERSISTENT => true,
+        PDO::ATTR_EMULATE_PREPARES => false,
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'"
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
       ];
 
       try {
@@ -43,7 +43,7 @@
 
     public function bind($param, $value, $type = null) {
       
-      if (!is_null($type)) {
+      if (is_null($type)) {
         
         switch(true) {
 
@@ -55,14 +55,14 @@
             $type = PDO::PARAM_BOOL;
             break;
 
+          case is_null($value):
+            $type = PDO::PARAM_NULL;
+            break;
+
           default:
             $type = PDO::PARAM_STR;
 
         }
-
-      } else {
-
-        $type = PDO::PARAM_NULL;
 
       }
 
@@ -70,16 +70,16 @@
 
     }
 
-    public function execute() {
+    public function executeWithParams($params = []) {
 
-      return $this->stmt->execute();
+      return $this->stmt->execute($params);
 
     }
 
     public function all()
     {
 
-      $this->execute();
+      $this->stmt->execute();
       return $this->stmt->fetchAll();
     
     }
@@ -87,7 +87,7 @@
     public function get()
     {
 
-      $this->execute();
+      $this->stmt->execute();
       return $this->stmt->fetch();
     
     }
@@ -96,6 +96,13 @@
     {
 
       return $this->stmt->rowCont();
+    
+    }
+
+    public function stmtNull()
+    {
+
+      return $this->stmt = null;
     
     }
 

@@ -8,10 +8,15 @@
 
   }
 
-  function cartSession($products, $count) {
+  function cartSession($cartProducts) {
 
-    $_SESSION['cart'] = $products;
-    $_SESSION['productsCount'] = $count;
+    $_SESSION['cart'] = $cartProducts;
+    
+  }
+
+  function countCartProducts($count){
+
+    $_SESSION['cartProductsCount'] = $count;
 
   }
 

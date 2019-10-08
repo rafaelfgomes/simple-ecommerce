@@ -23,20 +23,19 @@
 
     }
 
-    public function store()
+    public function save()
     {
 
-      $savedOrUpdated = $this->cart->storeProduct($_POST);
+      $savedInSession = $this->cart->saveProduct($_POST);
 
-      if ($savedOrUpdated) {
+      if ($savedInSession) {
         
-        flash('success', 'Produto adicionado ao carrinho');
+        flash('product_added', 'Produto adicionado ao carrinho');
         redirect('cart');
 
       } else {
 
-        flash('error', 'Erro ao adicionar o produto');
-        redirect('/');
+        redirect('');
 
       }
 

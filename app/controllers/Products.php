@@ -44,4 +44,9 @@
 
     }
 
+    public function delete()
+    {
+      # code...
+    }
+
   }

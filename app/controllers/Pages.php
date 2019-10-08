@@ -14,7 +14,8 @@ class Pages extends Controller {
 
     allCategories($this->category->getCategories());
     allProducts($this->products->all());
-    cartSession($this->cart->getProducts(), $this->cart->count());
+    cartSession($this->cart->getProducts());
+    countCartProducts($this->cart->countCartProducts());
 
     $data = [
       'attr' => ''

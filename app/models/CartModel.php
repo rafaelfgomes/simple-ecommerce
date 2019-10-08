@@ -13,7 +13,7 @@
     public function getProducts()
     {
 
-      $cartProducts = $this->db->query("SELECT c.id, p.name, p.description, p.image, c.quantity, p.price, (p.price * c. quantity) AS 'total_price' FROM cart c INNER JOIN products p on p.id = c.product_id");
+      $cartProducts = $this->db->query("SELECT c.id, p.name, p.image, c.quantity, p.price, (p.price * c. quantity) AS 'total_price' FROM cart c INNER JOIN products p on p.id = c.product_id");
       
       $cartProducts = $this->db->all();
 
@@ -23,22 +23,27 @@
 
     public function totalAmountValue()
     {
-      
-      $totalCartAmount = $this->db->query("SELECT SUM((p.price * c. quantity)) AS 'total_amount' FROM `simple-ecommerce`.cart c INNER JOIN `simple-ecommerce`.products p on p.id = c.product_id");
 
-      $totalCartAmount = $this->db->get();
+      $totalCartAmount = 0;
 
+      if (count($_SESSION['cart'])) {
+
+        foreach ($_SESSION['cart'] as $key => $product) {
+          
+          $totalCartAmount += $product->price;
+
+        }
+        
+      }
+  
       return $totalCartAmount;
 
     }
 
-    public function count()
+    public function countCartProducts()
     {
 
-      $this->db->query("SELECT COUNT(*) as 'total' FROM cart");
-      $count = $this->db->get();
-
-      return $count;
+      return count($_SESSION['cart']);
 
     }
 
@@ -46,7 +51,7 @@
     {
 
       $this->db->query("DELETE FROM cart WHERE id = :id");
-      $this->db->bind(':id', $id, PDO::PARAM_INT);
+      $this->db->bind(':id', $id);
 
       if ($this->db->execute()) {
 
@@ -58,31 +63,51 @@
       
     }
 
-    public function storeProduct($params)
+    public function saveProduct($params)
     {
 
-      $id = $params['product-id'];
-
-      $this->db->query("SELECT id, quantity FROM cart WHERE product_id = $id");
-
-      $data = $this->db->get();
-
-      if (isset($data)) {
-
-        $qtd = $data->quantity + 1;
+      if (count($_SESSION['cart'])) {
         
-        $this->db->query("UPDATE cart SET quantity = :quantity WHERE id = :id");
-        $this->db->bind(':quantity', $qtd, PDO::PARAM_INT);
-        $this->db->bind(':id', $data->id, PDO::PARAM_INT);
+        $result = array_search($params['product-id'], $_SESSION['cart']['product_id']);
+      
+        if (count($result)) {
 
-      } else {
+          $_SESSION['cart']['quantity']++;
 
-        $this->db->query('INSERT INTO cart (quantity, product_id) VALUES (1, :product_id)');
-        $this->db->bind(':product_id', $params['product-id'], PDO::PARAM_INT);
+        } else {
+
+          $_SESSION['cart']['cart_id']++;
+          $_SESSION['cart']['quantity'] = 1;
+        
+        }
 
       }
 
-      return ($this->db->execute()) ? true : false;
+      $this->db->query("SELECT id, name, image, price FROM products WHERE id = :id");
+      $this->db->bind(':id', $params['product-id']);
+      $product = $this->db->get();
+
+      $this->db->stmtNull();
+
+      //die(var_dump($cart));
+
+      if ($product) {
+
+        $_SESSION['cart'] = [
+
+          'cart_id' => $cart->id,
+          'product_id' => $product->id,
+          'name' => $product->name,
+          'image' => $product->image,
+          'price' => $product->price
+  
+        ];
+  
+        return true;
+
+      }
+
+      return false;
 
     }
 

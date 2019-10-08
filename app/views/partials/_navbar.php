@@ -15,7 +15,7 @@
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo URLROOT; ?>/cart"><i class="fas fa-cart-arrow-down fa-2x"></i></i>&nbsp;<span class="badge badge-secondary"><?php echo $_SESSION['productsCount']->total; ?></span></a>
+        <a class="nav-link" href="<?php echo URLROOT; ?>/cart"><i class="fas fa-cart-arrow-down fa-2x"></i></i>&nbsp;<span class="badge badge-secondary"><?php echo $_SESSION['cartProductsCount']; ?></span></a>
       </li>
 
     </ul>
